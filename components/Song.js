@@ -10,8 +10,7 @@ export default function Song({ item, index }) {
             <Image style={styles.AlbumImage} source={{uri: item.imageUrl}} />
             <View style={styles.SongTitleArtistBox}>
                 <Text numberOfLines={1} style={styles.SongTitle}>{item.songTitle}</Text>
-                <Text numberOfLines={1} style={styles.SongArtist}>Peach Pit</Text>
-                {/*<Text style={styles.SongArtist}> {item.songArtists}</Text>*/}
+                <Text numberOfLines={1} style={styles.SongArtist}>{item.songArtists[0].name}</Text>
             </View>
             <View style={styles.AlbumNameBox}><Text numberOfLines={1} style={styles.SongAlbum}>{item.albumName}</Text></View>
             <View style={styles.DurationBox}><Text style={styles.SongDuration}>{convertMillisToTime(item.duration)}</Text></View>
