@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Spotify",
-    "slug": "Spotify",
+    "name": "cs47-a3-starter-w23",
+    "slug": "cs47-a3-starter-w23",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

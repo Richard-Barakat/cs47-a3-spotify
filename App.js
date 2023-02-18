@@ -1,20 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, Pressable, View } from "react-native";
+import { useSpotifyAuth } from "./utils";
+import { Themes } from "./assets/Themes";
+import SpotifyAuthButton from "./components/SpotifyAuthButton";
+import SongList from "./components/SongList";
+import Header from "./components/Header";
 
 export default function App() {
+  // Pass in true to useSpotifyAuth to use the album ID (in env.js) instead of top tracks
+  const { token, tracks, getSpotifyAuth } = useSpotifyAuth();
+
+  console.log("tracks", tracks);
+
+  let contentDisplayed = null;
+
+  if (token) {
+    contentDisplayed = (
+      <View> 
+        <Header/>
+        <SongList tracks={tracks} />
+      </View>
+    );
+  } else {
+    contentDisplayed = (
+      <SpotifyAuthButton authenticationFunction={getSpotifyAuth} />
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      {contentDisplayed}
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: Themes.colors.background,
+    justifyContent: "center",
+    alignItems: "center",
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  }
 });
